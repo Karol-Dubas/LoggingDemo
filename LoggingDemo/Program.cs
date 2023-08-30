@@ -1,9 +1,16 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Logging runs synchronously, because these are small operations.
+// It shouldn't slow application, but can.
+
+builder.Logging.ClearProviders() // clear default logging configuration
+    .AddConfiguration(builder.Configuration.GetSection("Logging")) // add appsettings.json
+    .AddDebug() // debug window
+    .AddConsole()
+    ; 
+
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -21,5 +28,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+Task.Run(async () =>
+{
+    await Task.Delay(100);
+    using var httpClient = new HttpClient().GetAsync("http://localhost:5046/WeatherForecast").GetAwaiter().GetResult();
+});
 
 app.Run();
