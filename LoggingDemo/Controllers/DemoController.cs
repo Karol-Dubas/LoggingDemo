@@ -6,30 +6,15 @@ namespace LoggingDemo.Controllers;
 [Route("[controller]")]
 public class DemoController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
     private readonly ILogger<DemoController> _logger; // type argument is logging category
+    private readonly ILogger _customLogger;
 
-    public DemoController(ILogger<DemoController> logger)
+    public DemoController(
+        ILogger<DemoController> logger,
+        ILoggerFactory loggerFactory)
     {
         _logger = logger;
-    }
-
-    [HttpGet("forecast")]
-    public IEnumerable<WeatherForecast> GetForecast()
-    {
-        _logger.LogInformation("Info");
-
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+        _customLogger = loggerFactory.CreateLogger("MyCategory");
     }
 
     [HttpGet("logs")]
@@ -61,10 +46,9 @@ public class DemoController : ControllerBase
             _logger.LogError("Caught exception: {Exception}", e);
             _logger.LogError("Caught exception: {Message}", e.Message);
         }
-    }
-
-    class LackOfKnowledgeException : Exception
-    {
-        public LackOfKnowledgeException(string message) : base(message) { }
+        
+        
+        _customLogger.LogInformation("Category should be as declared in created logger");
+        _customLogger.LogTrace("Own trace log");
     }
 }
