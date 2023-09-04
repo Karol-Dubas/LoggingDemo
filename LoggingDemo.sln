@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingDemo", "LoggingDemo\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingDemo.SourceGenerator", "LoggingDemo.SourceGenerator\LoggingDemo.SourceGenerator.csproj", "{A98F5FC1-C298-48A7-AF5B-3CA739E5BA5C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingDemo.SerilogDemo", "LoggingDemo.SerilogDemo\LoggingDemo.SerilogDemo.csproj", "{8D34173E-BD48-4AFA-BC34-DC04C510732C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A98F5FC1-C298-48A7-AF5B-3CA739E5BA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A98F5FC1-C298-48A7-AF5B-3CA739E5BA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A98F5FC1-C298-48A7-AF5B-3CA739E5BA5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D34173E-BD48-4AFA-BC34-DC04C510732C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D34173E-BD48-4AFA-BC34-DC04C510732C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D34173E-BD48-4AFA-BC34-DC04C510732C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D34173E-BD48-4AFA-BC34-DC04C510732C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
